@@ -25,6 +25,8 @@ public class Principal {
 
             // Cria objeto da classe que controla a conexão com o servidor
             ccont = new ConexaoController(in, out);
+            
+            System.out.println("Teste GitHub Joao");
 
             // Exibe a tela de login
             TelaLogin telalogin = new TelaLogin();
