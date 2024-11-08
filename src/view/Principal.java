@@ -25,14 +25,12 @@ public class Principal {
 
             // Cria objeto da classe que controla a conexão com o servidor
             ccont = new ConexaoController(in, out);
-            
-            System.out.println("Teste");
 
             // Exibe a tela de login
             TelaLogin telalogin = new TelaLogin();
             telalogin.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }   
     }
 }
