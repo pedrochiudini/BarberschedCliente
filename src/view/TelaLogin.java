@@ -162,10 +162,9 @@ public class TelaLogin extends javax.swing.JFrame {
 
                 // criptografar aqui
                 String senhaCriptografada = Criptografia.criptografarSenha(senha);
-                System.out.println(senhaCriptografada);
 
                 // instânciando o barbeiro com login e senha
-                Barbeiro barbeiro = new Barbeiro(login, senha);
+                Barbeiro barbeiro = new Barbeiro(login, senhaCriptografada);
 
                 // enviando o barbeiro para efetuar o login
                 Barbeiro resultado = Principal.ccont.efetuarLogin(barbeiro);
