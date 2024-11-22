@@ -250,6 +250,18 @@ public class ConexaoController {
         }
     }
     
+    public boolean verificarHorarioDisponivel(Agendamento agendamento) {
+        try {
+            out.writeObject("VerificarHorarioDisponivel"); // enviando o comando
+            in.readObject(); // lendo "ok"
+            out.writeObject(agendamento); // enviando o agendamento
+            return (boolean) in.readObject(); // lendo e devolvendo o resultado
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
     // ================== FIM ==================
 
     public void fim() {

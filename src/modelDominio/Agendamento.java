@@ -46,6 +46,13 @@ public class Agendamento implements Serializable {
     public Agendamento(int idAgendamento) {
         this.idAgendamento = idAgendamento;
     }
+    
+    // construtor usado para verificar disponibilidade de horario
+    public Agendamento(Barbeiro barbeiro, LocalDate data, LocalTime horario) {
+        this.barbeiro = barbeiro;
+        this.data = data;
+        this.horario = horario;
+    }
 
     public int getIdAgendamento() {
         return idAgendamento;
