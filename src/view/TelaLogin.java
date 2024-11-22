@@ -13,7 +13,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
     public TelaLogin() {
         initComponents();
-
         jLabelAviso.setVisible(false);
     }
 
@@ -149,7 +148,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
@@ -170,9 +169,11 @@ public class TelaLogin extends javax.swing.JFrame {
                 Barbeiro resultado = Principal.ccont.efetuarLogin(barbeiro);
 
                 if (resultado != null) {
-                    JOptionPane.showMessageDialog(this, "Login efetuado com sucesso!");
                     this.dispose();
+                    JOptionPane.showMessageDialog(this, "Login efetuado com sucesso!", "Mensagem", 1);
                     // Aqui seria carregada a próxima tela do sistema
+                    TelaInicial telaInicial = new TelaInicial();
+                    telaInicial.setVisible(true);
                 } else {
                     jLabelAviso.setVisible(true); // Exibe mensagem de erro
                 }
