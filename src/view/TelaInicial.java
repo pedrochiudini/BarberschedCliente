@@ -5,10 +5,12 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicButtonUI;
@@ -17,18 +19,27 @@ public class TelaInicial extends javax.swing.JFrame {
 
     public TelaInicial() {
         initComponents();
+        
+        // Abrir tela maximizada
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        // Desabilitando janelas internas
+        jInternalFrameTeste.setVisible(false);
+        
         // Remover bordas/marcações do botão na tela
         jButtonAgendar.setBorderPainted(false);
         jButtonCadastrarCliente.setBorderPainted(false);
         removerBordasDosBotoes(jButtonMenu);
         removerBordasDosBotoes(jButtonCadastrarCliente);
         removerBordasDosBotoes(jButtonAgendar);
+        
         // Adicionando um hover ao botão
         adicionarHoverBotao(jButtonMenu);
+        
         // Adicionando um hover ao botão de icone
         adicionarHoverBotaoIcone(jButtonAgendar);
         adicionarHoverBotaoIcone(jButtonCadastrarCliente);
+        
         // Adicionando tooltip no botão
         UIManager.put("ToolTip.background", new ColorUIResource(Color.WHITE));
         jButtonCadastrarCliente.setToolTipText("Cadastrar Cliente");
@@ -38,6 +49,7 @@ public class TelaInicial extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPopupMenu = new javax.swing.JPopupMenu();
         jMenuCadastros = new javax.swing.JMenu();
@@ -55,7 +67,6 @@ public class TelaInicial extends javax.swing.JFrame {
         jMenuItemRelatorioServico = new javax.swing.JMenuItem();
         jPanelDireito = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -64,6 +75,8 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabelContagemCancelamentos = new javax.swing.JLabel();
         jLabelContagemConcluidos = new javax.swing.JLabel();
         jPanelCentro = new javax.swing.JPanel();
+        jDesktopPaneCentro = new javax.swing.JDesktopPane();
+        jInternalFrameTeste = new javax.swing.JInternalFrame();
         jPanelTopoMenu = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
         jPanelBotoes = new javax.swing.JPanel();
@@ -134,81 +147,128 @@ public class TelaInicial extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1366, 768));
 
         jPanelDireito.setBackground(new java.awt.Color(229, 234, 236));
+        jPanelDireito.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/Barbersched_Logo.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipady = -173;
+        gridBagConstraints.insets = new java.awt.Insets(302, 64, 0, 57);
+        jPanelDireito.add(jLabel1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 200;
+        gridBagConstraints.ipady = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(30, 64, 60, 57);
+        jPanelDireito.add(jSeparator2, gridBagConstraints);
 
         jLabel2.setText("AGENDAMENTOS:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(100, 64, 0, 0);
+        jPanelDireito.add(jLabel2, gridBagConstraints);
 
         jLabel3.setText("CANCELAMENTOS:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 64, 0, 0);
+        jPanelDireito.add(jLabel3, gridBagConstraints);
 
         jLabel4.setText("CONCLUÍDOS:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 64, 0, 0);
+        jPanelDireito.add(jLabel4, gridBagConstraints);
 
         jLabelContagemAgendamentos.setText("0");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(100, 69, 0, 57);
+        jPanelDireito.add(jLabelContagemAgendamentos, gridBagConstraints);
 
         jLabelContagemCancelamentos.setText("0");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 69, 0, 57);
+        jPanelDireito.add(jLabelContagemCancelamentos, gridBagConstraints);
 
         jLabelContagemConcluidos.setText("0");
-
-        javax.swing.GroupLayout jPanelDireitoLayout = new javax.swing.GroupLayout(jPanelDireito);
-        jPanelDireito.setLayout(jPanelDireitoLayout);
-        jPanelDireitoLayout.setHorizontalGroup(
-            jPanelDireitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDireitoLayout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
-                .addGroup(jPanelDireitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanelDireitoLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelContagemConcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDireitoLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelContagemCancelamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDireitoLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelContagemAgendamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator1)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57))
-        );
-        jPanelDireitoLayout.setVerticalGroup(
-            jPanelDireitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDireitoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
-                .addGroup(jPanelDireitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabelContagemAgendamentos))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelDireitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabelContagemCancelamentos))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelDireitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabelContagemConcluidos))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 69, 0, 57);
+        jPanelDireito.add(jLabelContagemConcluidos, gridBagConstraints);
 
         jPanelCentro.setBackground(new java.awt.Color(34, 51, 59));
         jPanelCentro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jDesktopPaneCentro.setBackground(new java.awt.Color(34, 51, 59));
+
+        jInternalFrameTeste.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jInternalFrameTeste.setMaximizable(true);
+        jInternalFrameTeste.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrameTesteLayout = new javax.swing.GroupLayout(jInternalFrameTeste.getContentPane());
+        jInternalFrameTeste.getContentPane().setLayout(jInternalFrameTesteLayout);
+        jInternalFrameTesteLayout.setHorizontalGroup(
+            jInternalFrameTesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFrameTesteLayout.setVerticalGroup(
+            jInternalFrameTesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jDesktopPaneCentro.setLayer(jInternalFrameTeste, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPaneCentroLayout = new javax.swing.GroupLayout(jDesktopPaneCentro);
+        jDesktopPaneCentro.setLayout(jDesktopPaneCentroLayout);
+        jDesktopPaneCentroLayout.setHorizontalGroup(
+            jDesktopPaneCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jInternalFrameTeste)
+        );
+        jDesktopPaneCentroLayout.setVerticalGroup(
+            jDesktopPaneCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jInternalFrameTeste)
+        );
 
         javax.swing.GroupLayout jPanelCentroLayout = new javax.swing.GroupLayout(jPanelCentro);
         jPanelCentro.setLayout(jPanelCentroLayout);
         jPanelCentroLayout.setHorizontalGroup(
             jPanelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jDesktopPaneCentro)
         );
         jPanelCentroLayout.setVerticalGroup(
             jPanelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 647, Short.MAX_VALUE)
+            .addComponent(jDesktopPaneCentro)
         );
 
         jPanelTopoMenu.setBackground(new java.awt.Color(31, 54, 59));
@@ -253,6 +313,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/IconeCadastrar.png"))); // NOI18N
         jButtonCadastrarCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelBotoesLayout = new javax.swing.GroupLayout(jPanelBotoes);
         jPanelBotoes.setLayout(jPanelBotoesLayout);
@@ -304,11 +369,12 @@ public class TelaInicial extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanelTopoMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelDireito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelDireito, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanelCentro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, 0)
+                        .addComponent(jPanelCentro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, 0))))
         );
 
         getAccessibleContext().setAccessibleDescription("Barbesched Software 1.0");
@@ -324,6 +390,10 @@ public class TelaInicial extends javax.swing.JFrame {
     private void jButtonAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgendarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAgendarActionPerformed
+
+    private void jButtonCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteActionPerformed
+        abrirJanelaInterna(jInternalFrameTeste);
+    }//GEN-LAST:event_jButtonCadastrarClienteActionPerformed
 
     // Método para remover as bordas de todos os botões em um Container
     private void removerBordasDosBotoes(JButton botao) {
@@ -349,7 +419,7 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void adicionarHoverBotaoIcone(JButton botao) {
         // Adicionar MouseListener para hover
         botao.addMouseListener(new MouseAdapter() {
@@ -363,6 +433,18 @@ public class TelaInicial extends javax.swing.JFrame {
                 botao.setBorderPainted(false);
             }
         });
+    }
+    
+    private void abrirJanelaInterna(JInternalFrame internalFrame) {
+        // Centraliza a janela interna no DesktopPane
+        Dimension desktopSize = jDesktopPaneCentro.getSize();
+        Dimension frameSize = internalFrame.getSize();
+        int x = (desktopSize.width - frameSize.width) / 2;
+        int y = (desktopSize.height - frameSize.height) / 2;
+        internalFrame.setLocation(x, y);
+      
+        // Abrindo a janela interna
+        internalFrame.setVisible(true);
     }
 
     public static void main(String args[]) {
@@ -401,6 +483,8 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAgendar;
     private javax.swing.JButton jButtonCadastrarCliente;
     private javax.swing.JButton jButtonMenu;
+    private javax.swing.JDesktopPane jDesktopPaneCentro;
+    private javax.swing.JInternalFrame jInternalFrameTeste;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -428,7 +512,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelDireito;
     private javax.swing.JPanel jPanelTopoMenu;
     private javax.swing.JPopupMenu jPopupMenu;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
