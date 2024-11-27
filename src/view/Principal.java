@@ -16,7 +16,7 @@ import java.net.Socket;
 public class Principal {
 
     public static ConexaoController ccont;
-
+    
     public static void main(String[] args) {
         try {
             Socket socket = new Socket("127.0.0.1", 55555);

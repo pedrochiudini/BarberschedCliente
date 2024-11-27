@@ -6,6 +6,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
@@ -18,13 +19,13 @@ import javax.swing.plaf.basic.BasicButtonUI;
 public class TelaInicial extends javax.swing.JFrame {
 
     public TelaInicial() {
-        initComponents();
+        initComponents();   
         
         // Abrir tela maximizada
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         // Desabilitando janelas internas
-        jInternalFrameTeste.setVisible(false);
+        jInternalFrameCadastroClientes.setVisible(false);
         
         // Remover bordas/marcações do botão na tela
         jButtonAgendar.setBorderPainted(false);
@@ -76,7 +77,28 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabelContagemConcluidos = new javax.swing.JLabel();
         jPanelCentro = new javax.swing.JPanel();
         jDesktopPaneCentro = new javax.swing.JDesktopPane();
-        jInternalFrameTeste = new javax.swing.JInternalFrame();
+        jInternalFrameCadastroClientes = new javax.swing.JInternalFrame();
+        jPanelTop = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanelCentralCadastroClientes = new javax.swing.JPanel();
+        jPanelMeioCadastroClientes = new javax.swing.JPanel();
+        jLabelNome = new javax.swing.JLabel();
+        jTextFieldNomeCadastroClientes = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jFormattedTextFieldCpfCadastroClientes = new javax.swing.JFormattedTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jFormattedTextFieldTelefoneCadastroClientes = new javax.swing.JFormattedTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextFieldLoginCadastroClientes = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTextFieldSenhaCadastroClientes = new javax.swing.JTextField();
+        jButtonCadastrarClientes = new javax.swing.JButton();
+        jButtonExcluirClientes = new javax.swing.JButton();
+        jPanelTabelaCadastroClientes = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanelTopoMenu = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
         jPanelBotoes = new javax.swing.JPanel();
@@ -100,6 +122,11 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jMenuItemCadastrarCliente.setText("Cadastrar Cliente");
         jMenuItemCadastrarCliente.setPreferredSize(new java.awt.Dimension(138, 25));
+        jMenuItemCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCadastrarClienteActionPerformed(evt);
+            }
+        });
         jMenuCadastros.add(jMenuItemCadastrarCliente);
 
         jMenuItemCadastrarServico.setText("Cadastrar Serviço");
@@ -232,32 +259,185 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jDesktopPaneCentro.setBackground(new java.awt.Color(34, 51, 59));
 
-        jInternalFrameTeste.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jInternalFrameTeste.setMaximizable(true);
-        jInternalFrameTeste.setVisible(true);
+        jInternalFrameCadastroClientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jInternalFrameCadastroClientes.setMaximizable(true);
+        jInternalFrameCadastroClientes.setTitle("Cadastro de Clientes");
+        jInternalFrameCadastroClientes.setVisible(true);
 
-        javax.swing.GroupLayout jInternalFrameTesteLayout = new javax.swing.GroupLayout(jInternalFrameTeste.getContentPane());
-        jInternalFrameTeste.getContentPane().setLayout(jInternalFrameTesteLayout);
-        jInternalFrameTesteLayout.setHorizontalGroup(
-            jInternalFrameTesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        jPanelTop.setBackground(new java.awt.Color(34, 51, 59));
+        jPanelTop.setLayout(new java.awt.GridBagLayout());
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/Barbersched_Logo.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipady = -250;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(23, 6, 11, 809);
+        jPanelTop.add(jLabel5, gridBagConstraints);
+
+        jLabelNome.setText("Nome");
+
+        jLabel6.setText("Cpf");
+
+        try {
+            jFormattedTextFieldCpfCadastroClientes.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel7.setText("Telefone");
+
+        try {
+            jFormattedTextFieldTelefoneCadastroClientes.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel8.setText("Data de Nascimento");
+
+        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+
+        jLabel9.setText("Login");
+
+        jLabel10.setText("Senha");
+
+        jButtonCadastrarClientes.setBackground(new java.awt.Color(34, 51, 59));
+        jButtonCadastrarClientes.setFont(new java.awt.Font("Inter Medium", 0, 12)); // NOI18N
+        jButtonCadastrarClientes.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCadastrarClientes.setText("Cadastrar");
+
+        jButtonExcluirClientes.setBackground(new java.awt.Color(34, 51, 59));
+        jButtonExcluirClientes.setFont(new java.awt.Font("Inter Medium", 0, 12)); // NOI18N
+        jButtonExcluirClientes.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonExcluirClientes.setText("Excluir");
+
+        javax.swing.GroupLayout jPanelMeioCadastroClientesLayout = new javax.swing.GroupLayout(jPanelMeioCadastroClientes);
+        jPanelMeioCadastroClientes.setLayout(jPanelMeioCadastroClientesLayout);
+        jPanelMeioCadastroClientesLayout.setHorizontalGroup(
+            jPanelMeioCadastroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMeioCadastroClientesLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(jPanelMeioCadastroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMeioCadastroClientesLayout.createSequentialGroup()
+                        .addComponent(jButtonCadastrarClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonExcluirClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabelNome)
+                    .addComponent(jTextFieldNomeCadastroClientes)
+                    .addComponent(jFormattedTextFieldCpfCadastroClientes)
+                    .addComponent(jFormattedTextFieldTelefoneCadastroClientes)
+                    .addComponent(jFormattedTextField1)
+                    .addComponent(jTextFieldLoginCadastroClientes)
+                    .addComponent(jTextFieldSenhaCadastroClientes))
+                .addGap(60, 60, 60))
         );
-        jInternalFrameTesteLayout.setVerticalGroup(
-            jInternalFrameTesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        jPanelMeioCadastroClientesLayout.setVerticalGroup(
+            jPanelMeioCadastroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMeioCadastroClientesLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabelNome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldNomeCadastroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jFormattedTextFieldCpfCadastroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jFormattedTextFieldTelefoneCadastroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldLoginCadastroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldSenhaCadastroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addGroup(jPanelMeioCadastroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCadastrarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonExcluirClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
-        jDesktopPaneCentro.setLayer(jInternalFrameTeste, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanelTabelaCadastroClientesLayout = new javax.swing.GroupLayout(jPanelTabelaCadastroClientes);
+        jPanelTabelaCadastroClientes.setLayout(jPanelTabelaCadastroClientesLayout);
+        jPanelTabelaCadastroClientesLayout.setHorizontalGroup(
+            jPanelTabelaCadastroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
+        jPanelTabelaCadastroClientesLayout.setVerticalGroup(
+            jPanelTabelaCadastroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
+
+        javax.swing.GroupLayout jPanelCentralCadastroClientesLayout = new javax.swing.GroupLayout(jPanelCentralCadastroClientes);
+        jPanelCentralCadastroClientes.setLayout(jPanelCentralCadastroClientesLayout);
+        jPanelCentralCadastroClientesLayout.setHorizontalGroup(
+            jPanelCentralCadastroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCentralCadastroClientesLayout.createSequentialGroup()
+                .addComponent(jPanelMeioCadastroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanelTabelaCadastroClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelCentralCadastroClientesLayout.setVerticalGroup(
+            jPanelCentralCadastroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCentralCadastroClientesLayout.createSequentialGroup()
+                .addComponent(jPanelMeioCadastroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanelTabelaCadastroClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jInternalFrameCadastroClientesLayout = new javax.swing.GroupLayout(jInternalFrameCadastroClientes.getContentPane());
+        jInternalFrameCadastroClientes.getContentPane().setLayout(jInternalFrameCadastroClientesLayout);
+        jInternalFrameCadastroClientesLayout.setHorizontalGroup(
+            jInternalFrameCadastroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelCentralCadastroClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jInternalFrameCadastroClientesLayout.setVerticalGroup(
+            jInternalFrameCadastroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrameCadastroClientesLayout.createSequentialGroup()
+                .addComponent(jPanelTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanelCentralCadastroClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jDesktopPaneCentro.setLayer(jInternalFrameCadastroClientes, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPaneCentroLayout = new javax.swing.GroupLayout(jDesktopPaneCentro);
         jDesktopPaneCentro.setLayout(jDesktopPaneCentroLayout);
         jDesktopPaneCentroLayout.setHorizontalGroup(
             jDesktopPaneCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrameTeste)
+            .addComponent(jInternalFrameCadastroClientes)
         );
         jDesktopPaneCentroLayout.setVerticalGroup(
             jDesktopPaneCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrameTeste)
+            .addComponent(jInternalFrameCadastroClientes)
         );
 
         javax.swing.GroupLayout jPanelCentroLayout = new javax.swing.GroupLayout(jPanelCentro);
@@ -373,8 +553,7 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jPanelCentro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(0, 0, 0))))
+                        .addComponent(jPanelCentro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         getAccessibleContext().setAccessibleDescription("Barbesched Software 1.0");
@@ -392,8 +571,12 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAgendarActionPerformed
 
     private void jButtonCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteActionPerformed
-        abrirJanelaInterna(jInternalFrameTeste);
+        abrirJanelaInterna(jInternalFrameCadastroClientes);
     }//GEN-LAST:event_jButtonCadastrarClienteActionPerformed
+
+    private void jMenuItemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarClienteActionPerformed
+        abrirJanelaInterna(jInternalFrameCadastroClientes);
+    }//GEN-LAST:event_jMenuItemCadastrarClienteActionPerformed
 
     // Método para remover as bordas de todos os botões em um Container
     private void removerBordasDosBotoes(JButton botao) {
@@ -482,16 +665,28 @@ public class TelaInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgendar;
     private javax.swing.JButton jButtonCadastrarCliente;
+    private javax.swing.JButton jButtonCadastrarClientes;
+    private javax.swing.JButton jButtonExcluirClientes;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JDesktopPane jDesktopPaneCentro;
-    private javax.swing.JInternalFrame jInternalFrameTeste;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCpfCadastroClientes;
+    private javax.swing.JFormattedTextField jFormattedTextFieldTelefoneCadastroClientes;
+    private javax.swing.JInternalFrame jInternalFrameCadastroClientes;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelContagemAgendamentos;
     private javax.swing.JLabel jLabelContagemCancelamentos;
     private javax.swing.JLabel jLabelContagemConcluidos;
+    private javax.swing.JLabel jLabelNome;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -508,12 +703,21 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuRelatorios;
     private javax.swing.JMenu jMenuServicos;
     private javax.swing.JPanel jPanelBotoes;
+    private javax.swing.JPanel jPanelCentralCadastroClientes;
     private javax.swing.JPanel jPanelCentro;
     private javax.swing.JPanel jPanelDireito;
+    private javax.swing.JPanel jPanelMeioCadastroClientes;
+    private javax.swing.JPanel jPanelTabelaCadastroClientes;
+    private javax.swing.JPanel jPanelTop;
     private javax.swing.JPanel jPanelTopoMenu;
     private javax.swing.JPopupMenu jPopupMenu;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldLoginCadastroClientes;
+    private javax.swing.JTextField jTextFieldNomeCadastroClientes;
+    private javax.swing.JTextField jTextFieldSenhaCadastroClientes;
     // End of variables declaration//GEN-END:variables
 }
