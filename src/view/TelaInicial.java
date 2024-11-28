@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -27,12 +28,19 @@ public class TelaInicial extends javax.swing.JFrame {
         // Desabilitando janelas internas
         jInternalFrameCadastroClientes.setVisible(false);
         
+        // Desabilitando o botão Fechar janelas
+        jButtonFecharJanelas.setEnabled(false);
+        
         // Remover bordas/marcações do botão na tela
         jButtonAgendar.setBorderPainted(false);
         jButtonCadastrarCliente.setBorderPainted(false);
+        jButtonFecharJanelas.setBorderPainted(false);
         removerBordasDosBotoes(jButtonMenu);
         removerBordasDosBotoes(jButtonCadastrarCliente);
         removerBordasDosBotoes(jButtonAgendar);
+        removerBordasDosBotoes(jButtonFecharJanelas);
+        removerBordasDosBotoes(jButtonCadastrarClientes);
+        removerBordasDosBotoes(jButtonExcluirClientes);
         
         // Adicionando um hover ao botão
         adicionarHoverBotao(jButtonMenu);
@@ -45,6 +53,7 @@ public class TelaInicial extends javax.swing.JFrame {
         UIManager.put("ToolTip.background", new ColorUIResource(Color.WHITE));
         jButtonCadastrarCliente.setToolTipText("Cadastrar Cliente");
         jButtonAgendar.setToolTipText("Agendar");
+        jButtonFecharJanelas.setToolTipText("Fechar Janelas");
     }
 
     @SuppressWarnings("unchecked")
@@ -98,12 +107,13 @@ public class TelaInicial extends javax.swing.JFrame {
         jButtonExcluirClientes = new javax.swing.JButton();
         jPanelTabelaCadastroClientes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableClientes = new javax.swing.JTable();
         jPanelTopoMenu = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
         jPanelBotoes = new javax.swing.JPanel();
         jButtonAgendar = new javax.swing.JButton();
         jButtonCadastrarCliente = new javax.swing.JButton();
+        jButtonFecharJanelas = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -371,7 +381,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addContainerGap(151, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -382,7 +392,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableClientes);
 
         javax.swing.GroupLayout jPanelTabelaCadastroClientesLayout = new javax.swing.GroupLayout(jPanelTabelaCadastroClientes);
         jPanelTabelaCadastroClientes.setLayout(jPanelTabelaCadastroClientesLayout);
@@ -499,6 +509,14 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
+        jButtonFecharJanelas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/IconeFecharJanela.png"))); // NOI18N
+        jButtonFecharJanelas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonFecharJanelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFecharJanelasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelBotoesLayout = new javax.swing.GroupLayout(jPanelBotoes);
         jPanelBotoes.setLayout(jPanelBotoesLayout);
         jPanelBotoesLayout.setHorizontalGroup(
@@ -508,14 +526,17 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(jButtonCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(715, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonFecharJanelas, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(661, Short.MAX_VALUE))
         );
         jPanelBotoesLayout.setVerticalGroup(
             jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButtonCadastrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelBotoesLayout.createSequentialGroup()
-                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonCadastrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonFecharJanelas, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -549,7 +570,7 @@ public class TelaInicial extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanelTopoMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelDireito, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+                    .addComponent(jPanelDireito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -572,11 +593,25 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jButtonCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteActionPerformed
         abrirJanelaInterna(jInternalFrameCadastroClientes);
+        if (jButtonFecharJanelas.isEnabled() == false) {
+            jButtonFecharJanelas.setEnabled(true);
+            adicionarHoverBotaoIcone(jButtonFecharJanelas);
+        }
     }//GEN-LAST:event_jButtonCadastrarClienteActionPerformed
 
     private void jMenuItemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarClienteActionPerformed
         abrirJanelaInterna(jInternalFrameCadastroClientes);
+        if (jButtonFecharJanelas.isEnabled() == false) {
+            jButtonFecharJanelas.setEnabled(true);
+            adicionarHoverBotaoIcone(jButtonFecharJanelas);
+        }
     }//GEN-LAST:event_jMenuItemCadastrarClienteActionPerformed
+
+    private void jButtonFecharJanelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharJanelasActionPerformed
+        jInternalFrameCadastroClientes.setVisible(false);
+        jButtonFecharJanelas.setEnabled(false);
+        removerHoverBotaoIcone(jButtonFecharJanelas);
+    }//GEN-LAST:event_jButtonFecharJanelasActionPerformed
 
     // Método para remover as bordas de todos os botões em um Container
     private void removerBordasDosBotoes(JButton botao) {
@@ -617,6 +652,15 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void removerHoverBotaoIcone(JButton botao) {
+    for (MouseListener listener : botao.getMouseListeners()) {
+        if (listener instanceof MouseAdapter) {
+            botao.removeMouseListener(listener);
+            botao.setBorderPainted(false);
+        }
+    }
+}
     
     private void abrirJanelaInterna(JInternalFrame internalFrame) {
         // Centraliza a janela interna no DesktopPane
@@ -667,6 +711,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastrarCliente;
     private javax.swing.JButton jButtonCadastrarClientes;
     private javax.swing.JButton jButtonExcluirClientes;
+    private javax.swing.JButton jButtonFecharJanelas;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JDesktopPane jDesktopPaneCentro;
     private javax.swing.JFormattedTextField jFormattedTextField1;
@@ -715,7 +760,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableClientes;
     private javax.swing.JTextField jTextFieldLoginCadastroClientes;
     private javax.swing.JTextField jTextFieldNomeCadastroClientes;
     private javax.swing.JTextField jTextFieldSenhaCadastroClientes;

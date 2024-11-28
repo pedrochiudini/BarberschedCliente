@@ -196,7 +196,7 @@
           <Group type="102" attributes="0">
               <Component id="jPanelTopoMenu" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanelDireito" pref="744" max="32767" attributes="0"/>
+                  <Component id="jPanelDireito" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jPanelBotoes" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -594,7 +594,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable1">
+                            <Component class="javax.swing.JTable" name="jTableClientes">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="4" rowCount="4">
@@ -686,16 +686,19 @@
                   <Component id="jButtonCadastrarCliente" min="-2" pref="48" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonAgendar" min="-2" pref="48" max="-2" attributes="0"/>
-                  <EmptySpace pref="715" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jButtonFecharJanelas" min="-2" pref="48" max="-2" attributes="0"/>
+                  <EmptySpace pref="661" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jButtonCadastrarCliente" max="32767" attributes="0"/>
-                      <Component id="jButtonAgendar" alignment="1" min="-2" pref="51" max="-2" attributes="0"/>
+              <Component id="jButtonCadastrarCliente" alignment="0" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jButtonAgendar" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="jButtonFecharJanelas" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
@@ -737,6 +740,21 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCadastrarClienteActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonFecharJanelas">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/view/imagens/IconeFecharJanela.png"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFecharJanelasActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
