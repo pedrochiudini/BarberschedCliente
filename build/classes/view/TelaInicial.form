@@ -439,7 +439,7 @@
                                       <Component id="jTextFieldNomeCadastroClientes" max="32767" attributes="0"/>
                                       <Component id="jFormattedTextFieldCpfCadastroClientes" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jFormattedTextFieldTelefoneCadastroClientes" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jFormattedTextField1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jFormattedTextFieldDataNascimentoCadastroClientes" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jTextFieldLoginCadastroClientes" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jTextFieldSenhaCadastroClientes" alignment="0" max="32767" attributes="0"/>
                                   </Group>
@@ -465,7 +465,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jFormattedTextField1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jFormattedTextFieldDataNascimentoCadastroClientes" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -521,7 +521,7 @@
                             <Property name="text" type="java.lang.String" value="Data de Nascimento"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+                        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldDataNascimentoCadastroClientes">
                           <Properties>
                             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                               <Format subtype="1" type="1"/>
@@ -555,6 +555,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Cadastrar"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCadastrarClientesActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButtonExcluirClientes">
                           <Properties>
@@ -569,6 +572,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Excluir"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExcluirClientesActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -598,11 +604,14 @@
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="4" rowCount="4">
-                                    <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                                    <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                                    <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                                    <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                                    <Column editable="false" title="Title 1" type="java.lang.Object"/>
+                                    <Column editable="false" title="Title 2" type="java.lang.Object"/>
+                                    <Column editable="false" title="Title 3" type="java.lang.Object"/>
+                                    <Column editable="false" title="Title 4" type="java.lang.Object"/>
                                   </Table>
+                                </Property>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                 </Property>
                               </Properties>
                             </Component>

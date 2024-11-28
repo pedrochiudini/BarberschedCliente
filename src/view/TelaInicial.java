@@ -6,31 +6,39 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicButtonUI;
+import modelDominio.Cliente;
+import security.Criptografia;
+import view.tablemodel.ClienteTableModel;
 
 public class TelaInicial extends javax.swing.JFrame {
 
+    // tableModel dos Clientes
+    private ClienteTableModel clienteModel;
+
     public TelaInicial() {
-        initComponents();   
-        
+        initComponents();
+
         // Abrir tela maximizada
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
+
         // Desabilitando janelas internas
         jInternalFrameCadastroClientes.setVisible(false);
-        
+
         // Desabilitando o botão Fechar janelas
         jButtonFecharJanelas.setEnabled(false);
-        
+
         // Remover bordas/marcações do botão na tela
         jButtonAgendar.setBorderPainted(false);
         jButtonCadastrarCliente.setBorderPainted(false);
@@ -41,14 +49,14 @@ public class TelaInicial extends javax.swing.JFrame {
         removerBordasDosBotoes(jButtonFecharJanelas);
         removerBordasDosBotoes(jButtonCadastrarClientes);
         removerBordasDosBotoes(jButtonExcluirClientes);
-        
+
         // Adicionando um hover ao botão
         adicionarHoverBotao(jButtonMenu);
-        
+
         // Adicionando um hover ao botão de icone
         adicionarHoverBotaoIcone(jButtonAgendar);
         adicionarHoverBotaoIcone(jButtonCadastrarCliente);
-        
+
         // Adicionando tooltip no botão
         UIManager.put("ToolTip.background", new ColorUIResource(Color.WHITE));
         jButtonCadastrarCliente.setToolTipText("Cadastrar Cliente");
@@ -98,7 +106,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jFormattedTextFieldTelefoneCadastroClientes = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDataNascimentoCadastroClientes = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextFieldLoginCadastroClientes = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -306,7 +314,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jLabel8.setText("Data de Nascimento");
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextFieldDataNascimentoCadastroClientes.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
         jLabel9.setText("Login");
 
@@ -316,11 +324,21 @@ public class TelaInicial extends javax.swing.JFrame {
         jButtonCadastrarClientes.setFont(new java.awt.Font("Inter Medium", 0, 12)); // NOI18N
         jButtonCadastrarClientes.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCadastrarClientes.setText("Cadastrar");
+        jButtonCadastrarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarClientesActionPerformed(evt);
+            }
+        });
 
         jButtonExcluirClientes.setBackground(new java.awt.Color(34, 51, 59));
         jButtonExcluirClientes.setFont(new java.awt.Font("Inter Medium", 0, 12)); // NOI18N
         jButtonExcluirClientes.setForeground(new java.awt.Color(255, 255, 255));
         jButtonExcluirClientes.setText("Excluir");
+        jButtonExcluirClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirClientesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelMeioCadastroClientesLayout = new javax.swing.GroupLayout(jPanelMeioCadastroClientes);
         jPanelMeioCadastroClientes.setLayout(jPanelMeioCadastroClientesLayout);
@@ -342,7 +360,7 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addComponent(jTextFieldNomeCadastroClientes)
                     .addComponent(jFormattedTextFieldCpfCadastroClientes)
                     .addComponent(jFormattedTextFieldTelefoneCadastroClientes)
-                    .addComponent(jFormattedTextField1)
+                    .addComponent(jFormattedTextFieldDataNascimentoCadastroClientes)
                     .addComponent(jTextFieldLoginCadastroClientes)
                     .addComponent(jTextFieldSenhaCadastroClientes))
                 .addGap(60, 60, 60))
@@ -365,7 +383,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFormattedTextFieldDataNascimentoCadastroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -391,7 +409,15 @@ public class TelaInicial extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTableClientes);
 
         javax.swing.GroupLayout jPanelTabelaCadastroClientesLayout = new javax.swing.GroupLayout(jPanelTabelaCadastroClientes);
@@ -593,6 +619,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jButtonCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteActionPerformed
         abrirJanelaInterna(jInternalFrameCadastroClientes);
+        atualizaTabelaCadastroClientes();
         if (jButtonFecharJanelas.isEnabled() == false) {
             jButtonFecharJanelas.setEnabled(true);
             adicionarHoverBotaoIcone(jButtonFecharJanelas);
@@ -601,6 +628,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jMenuItemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarClienteActionPerformed
         abrirJanelaInterna(jInternalFrameCadastroClientes);
+        atualizaTabelaCadastroClientes();
         if (jButtonFecharJanelas.isEnabled() == false) {
             jButtonFecharJanelas.setEnabled(true);
             adicionarHoverBotaoIcone(jButtonFecharJanelas);
@@ -612,6 +640,106 @@ public class TelaInicial extends javax.swing.JFrame {
         jButtonFecharJanelas.setEnabled(false);
         removerHoverBotaoIcone(jButtonFecharJanelas);
     }//GEN-LAST:event_jButtonFecharJanelasActionPerformed
+
+    private void jButtonCadastrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClientesActionPerformed
+        if (!jTextFieldNomeCadastroClientes.getText().equals("")) {
+            if (!jFormattedTextFieldCpfCadastroClientes.getText().equals("   .   .   -  ")) {
+                if (!jFormattedTextFieldTelefoneCadastroClientes.getText().equals("(  )      -    ")) {
+                    if (!jFormattedTextFieldDataNascimentoCadastroClientes.getText().equals("")) {
+                        if (!jTextFieldLoginCadastroClientes.getText().equals("")) {
+                            if (!jTextFieldSenhaCadastroClientes.getText().equals("")) {
+                                // obtendo os dados dos campos informados
+                                String nome = jTextFieldNomeCadastroClientes.getText();
+                                String cpf = jFormattedTextFieldCpfCadastroClientes.getText();
+                                String telefone = jFormattedTextFieldTelefoneCadastroClientes.getText();
+                                LocalDate dataCadastro = LocalDate.now();
+                                String login = jTextFieldLoginCadastroClientes.getText();
+                                String senha = jTextFieldSenhaCadastroClientes.getText();
+                                String dataNascimento = jFormattedTextFieldDataNascimentoCadastroClientes.getText();
+
+                                // verificando cpf e login no banco
+                                if (!Principal.ccont.verificarCpfCadastradoCliente(cpf)) {
+                                    if (!Principal.ccont.verificarLoginCadastradoCliente(login)) {
+                                        // criptografando a senha informada
+                                        String senhaCriptografada = Criptografia.criptografarSenha(senha);
+
+                                        // criando o cliente com os dados informados
+                                        Cliente cliente = new Cliente(nome, cpf, telefone, dataCadastro, login, senhaCriptografada, dataNascimento);
+                                        boolean resultado = false;
+
+                                        // inserindo o cliente e pegando o resultado
+                                        resultado = Principal.ccont.clienteInserir(cliente);
+
+                                        // testando o resultado
+                                        if (resultado) {
+                                            JOptionPane.showMessageDialog(this, "Cliente inserido com sucesso!", "Banco", 1);
+                                            atualizaTabelaCadastroClientes();
+                                        } else {
+                                            JOptionPane.showMessageDialog(this, "Ocorreu um erro ao inserir.", "Banco", JOptionPane.ERROR_MESSAGE);
+                                        }
+                                    } else {
+                                        JOptionPane.showMessageDialog(this, "O login já está cadastrado no banco.", "Banco", JOptionPane.ERROR_MESSAGE);
+                                        jTextFieldNomeCadastroClientes.requestFocus();
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "Cpf já cadastrado no banco.", "Banco", JOptionPane.ERROR_MESSAGE);
+                                    jFormattedTextFieldCpfCadastroClientes.requestFocus();
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Preencha o campo senha.");
+                                jTextFieldSenhaCadastroClientes.requestFocus();
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Preencha o campo login.");
+                            jTextFieldLoginCadastroClientes.requestFocus();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Preencha o campo data de nascimento.");
+                        jFormattedTextFieldDataNascimentoCadastroClientes.requestFocus();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Preencha o campo telefone.");
+                    jFormattedTextFieldTelefoneCadastroClientes.requestFocus();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Preencha o campo cpf.");
+                jFormattedTextFieldCpfCadastroClientes.requestFocus();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Preencha o campo nome.");
+            jTextFieldNomeCadastroClientes.requestFocus();
+        }
+    }//GEN-LAST:event_jButtonCadastrarClientesActionPerformed
+
+    private void jButtonExcluirClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirClientesActionPerformed
+        // verificando se o usuário selecionou um cliente
+        if (jTableClientes.getSelectedRow() != -1) {
+            int result = JOptionPane.showConfirmDialog(this,
+                    "Tem certeza que deseja excluir?",
+                    "",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if (result == JOptionPane.YES_OPTION) {
+                Cliente cliente = clienteModel.getCliente(jTableClientes.getSelectedRow());
+                if (Principal.ccont.clienteExcluir(cliente)) {
+                    JOptionPane.showMessageDialog(this, "Registro excluído com sucesso!", "Banco", 1);
+                    atualizaTabelaCadastroClientes();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Não foi possível excluir!", "Banco", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButtonExcluirClientesActionPerformed
+
+    //método que atualiza a Tabela de Clientes
+    private void atualizaTabelaCadastroClientes() {
+        //buscar a listagem de Clientes 
+        ArrayList<Cliente> listaClientes = Principal.ccont.getClienteLista();
+        // Criar o tablemodel
+        clienteModel = new ClienteTableModel(listaClientes);
+        //setar o table model na Jtable
+        jTableClientes.setModel(clienteModel);
+    }
 
     // Método para remover as bordas de todos os botões em um Container
     private void removerBordasDosBotoes(JButton botao) {
@@ -652,16 +780,16 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void removerHoverBotaoIcone(JButton botao) {
-    for (MouseListener listener : botao.getMouseListeners()) {
-        if (listener instanceof MouseAdapter) {
-            botao.removeMouseListener(listener);
-            botao.setBorderPainted(false);
+        for (MouseListener listener : botao.getMouseListeners()) {
+            if (listener instanceof MouseAdapter) {
+                botao.removeMouseListener(listener);
+                botao.setBorderPainted(false);
+            }
         }
     }
-}
-    
+
     private void abrirJanelaInterna(JInternalFrame internalFrame) {
         // Centraliza a janela interna no DesktopPane
         Dimension desktopSize = jDesktopPaneCentro.getSize();
@@ -669,7 +797,7 @@ public class TelaInicial extends javax.swing.JFrame {
         int x = (desktopSize.width - frameSize.width) / 2;
         int y = (desktopSize.height - frameSize.height) / 2;
         internalFrame.setLocation(x, y);
-      
+
         // Abrindo a janela interna
         internalFrame.setVisible(true);
     }
@@ -714,8 +842,8 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton jButtonFecharJanelas;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JDesktopPane jDesktopPaneCentro;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextFieldCpfCadastroClientes;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDataNascimentoCadastroClientes;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelefoneCadastroClientes;
     private javax.swing.JInternalFrame jInternalFrameCadastroClientes;
     private javax.swing.JLabel jLabel1;

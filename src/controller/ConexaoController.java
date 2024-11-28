@@ -75,7 +75,7 @@ public class ConexaoController {
             return false;
         }
     }
-    
+
     public boolean barbeiroAlterar(Barbeiro barbeiro) {
         try {
             out.writeObject("BarbeiroAlterar"); // enviando o comando
@@ -87,7 +87,7 @@ public class ConexaoController {
             return false;
         }
     }
-    
+
     public boolean barbeiroExcluir(Barbeiro barbeiro) {
         try {
             out.writeObject("BarbeiroExcluir"); // enviando o comando
@@ -99,7 +99,7 @@ public class ConexaoController {
             return false;
         }
     }
-    
+
     // método que comunica com o Servidor e envia o
     // comando "ClienteLista" e recebe uma listagem de clientes
     public ArrayList<Cliente> getClienteLista() {
@@ -125,7 +125,7 @@ public class ConexaoController {
             return false;
         }
     }
-    
+
     public boolean clienteAlterar(Cliente cliente) {
         try {
             out.writeObject("ClienteAlterar"); // enviando o comando
@@ -137,7 +137,7 @@ public class ConexaoController {
             return false;
         }
     }
-    
+
     public boolean clienteExcluir(Cliente cliente) {
         try {
             out.writeObject("ClienteExcluir"); // enviando o comando
@@ -149,7 +149,33 @@ public class ConexaoController {
             return false;
         }
     }
+
+    // O método retorna true se o CPF existir no banco e false caso contrário.
+    public boolean verificarCpfCadastradoCliente(String cpf) {
+        try {
+            out.writeObject("VerificarCpfCadastradoCliente"); // enviando o comando
+            in.readObject(); // lendo "ok"
+            out.writeObject(cpf); // enviando o cpf
+            return (boolean) in.readObject(); // lendo e devolvendo o resultado
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     
+    // O método retorna true se o Login existir no banco e false caso contrário.
+    public boolean verificarLoginCadastradoCliente(String login) {
+        try {
+            out.writeObject("VerificarLoginCadastradoCliente"); // enviando o comando
+            in.readObject(); // lendo "ok"
+            out.writeObject(login); // enviando o login
+            return (boolean) in.readObject(); // lendo e devolvendo o resultado
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     // método que comunica com o Servidor e envia o
     // comando "ServicoLista" e recebe uma listagem de serviços
     public ArrayList<Servico> getServicoLista() {
@@ -175,7 +201,7 @@ public class ConexaoController {
             return false;
         }
     }
-    
+
     public boolean servicoAlterar(Servico servico) {
         try {
             out.writeObject("ServicoAlterar"); // enviando o comando
@@ -187,7 +213,7 @@ public class ConexaoController {
             return false;
         }
     }
-    
+
     public boolean servicoExcluir(Servico servico) {
         try {
             out.writeObject("ServicoExcluir"); // enviando o comando
@@ -199,7 +225,7 @@ public class ConexaoController {
             return false;
         }
     }
-    
+
     // método que comunica com o Servidor e envia o
     // comando "AgendamentoLista" e recebe uma listagem de serviços
     public ArrayList<Agendamento> getAgendamentoLista() {
@@ -225,7 +251,7 @@ public class ConexaoController {
             return false;
         }
     }
-    
+
     public boolean agendamentoAlterar(Agendamento agendamento) {
         try {
             out.writeObject("AgendamentoAlterar"); // enviando o comando
@@ -237,7 +263,7 @@ public class ConexaoController {
             return false;
         }
     }
-    
+
     public boolean agendamentoExcluir(Agendamento agendamento) {
         try {
             out.writeObject("AgendamentoExcluir"); // enviando o comando
@@ -249,10 +275,10 @@ public class ConexaoController {
             return false;
         }
     }
-    
-    public boolean verificarHorarioDisponivel(Agendamento agendamento) {
+
+    public boolean verificarBarbeiroDisponivel(Agendamento agendamento) {
         try {
-            out.writeObject("VerificarHorarioDisponivel"); // enviando o comando
+            out.writeObject("VerificarBarbeiroDisponivel"); // enviando o comando
             in.readObject(); // lendo "ok"
             out.writeObject(agendamento); // enviando o agendamento
             return (boolean) in.readObject(); // lendo e devolvendo o resultado
@@ -261,9 +287,20 @@ public class ConexaoController {
             return false;
         }
     }
-    
-    // ================== FIM ==================
 
+    public boolean verificarAgendamento(Agendamento agendamento) {
+        try {
+            out.writeObject("VerificarAgendamento"); // enviando o comando
+            in.readObject(); // lendo "ok"
+            out.writeObject(agendamento); // enviando o agendamento
+            return (boolean) in.readObject(); // lendo e devolvendo o resultado
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // ================== FIM ==================
     public void fim() {
         try {
             out.writeObject("fim");
