@@ -94,8 +94,22 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabelContagemConcluidos = new javax.swing.JLabel();
         jPanelCentro = new javax.swing.JPanel();
         jDesktopPaneCentro = new javax.swing.JDesktopPane();
+        jInternalFrameCadastrosServicos = new javax.swing.JInternalFrame();
+        jPanelCentralCadastroServicos = new javax.swing.JPanel();
+        jPanelTabelaServicos = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableServicos = new javax.swing.JTable();
+        jPanelMeioCadastroServicos = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jTextFieldNomeCadastroServicos = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jFormattedTextFieldValorCadastroServicos = new javax.swing.JFormattedTextField();
+        jButtonCadastrarServicos = new javax.swing.JButton();
+        jButtonExcluirServico = new javax.swing.JButton();
+        jPanelTopCadastroClientes1 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
         jInternalFrameCadastroClientes = new javax.swing.JInternalFrame();
-        jPanelTop = new javax.swing.JPanel();
+        jPanelTopCadastroClientes = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanelCentralCadastroClientes = new javax.swing.JPanel();
         jPanelMeioCadastroClientes = new javax.swing.JPanel();
@@ -123,12 +137,12 @@ public class TelaInicial extends javax.swing.JFrame {
         jButtonCadastrarCliente = new javax.swing.JButton();
         jButtonFecharJanelas = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuArquivo = new javax.swing.JMenu();
+        jMenuItemSair = new javax.swing.JMenuItem();
+        jMenuEditar = new javax.swing.JMenu();
 
         jPopupMenu.setAlignmentY(0.7F);
-        jPopupMenu.setPopupSize(new java.awt.Dimension(160, 90));
+        jPopupMenu.setPopupSize(new java.awt.Dimension(180, 80));
 
         jMenuCadastros.setText("Cadastros");
         jMenuCadastros.setPreferredSize(new java.awt.Dimension(200, 30));
@@ -149,6 +163,11 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jMenuItemCadastrarServico.setText("Cadastrar Serviço");
         jMenuItemCadastrarServico.setPreferredSize(new java.awt.Dimension(139, 25));
+        jMenuItemCadastrarServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCadastrarServicoActionPerformed(evt);
+            }
+        });
         jMenuCadastros.add(jMenuItemCadastrarServico);
 
         jPopupMenu.add(jMenuCadastros);
@@ -277,13 +296,155 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jDesktopPaneCentro.setBackground(new java.awt.Color(34, 51, 59));
 
+        jInternalFrameCadastrosServicos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jInternalFrameCadastrosServicos.setMaximizable(true);
+        jInternalFrameCadastrosServicos.setTitle("Cadastro de Serviços");
+        jInternalFrameCadastrosServicos.setPreferredSize(new java.awt.Dimension(1020, 728));
+        jInternalFrameCadastrosServicos.setVisible(true);
+
+        jTableServicos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTableServicos);
+
+        javax.swing.GroupLayout jPanelTabelaServicosLayout = new javax.swing.GroupLayout(jPanelTabelaServicos);
+        jPanelTabelaServicos.setLayout(jPanelTabelaServicosLayout);
+        jPanelTabelaServicosLayout.setHorizontalGroup(
+            jPanelTabelaServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTabelaServicosLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+        jPanelTabelaServicosLayout.setVerticalGroup(
+            jPanelTabelaServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2)
+        );
+
+        javax.swing.GroupLayout jPanelCentralCadastroServicosLayout = new javax.swing.GroupLayout(jPanelCentralCadastroServicos);
+        jPanelCentralCadastroServicos.setLayout(jPanelCentralCadastroServicosLayout);
+        jPanelCentralCadastroServicosLayout.setHorizontalGroup(
+            jPanelCentralCadastroServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCentralCadastroServicosLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanelTabelaServicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+        jPanelCentralCadastroServicosLayout.setVerticalGroup(
+            jPanelCentralCadastroServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelTabelaServicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jLabel12.setText("Nome");
+
+        jTextFieldNomeCadastroServicos.setPreferredSize(new java.awt.Dimension(100, 22));
+
+        jLabel13.setText("Valor");
+
+        jFormattedTextFieldValorCadastroServicos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jFormattedTextFieldValorCadastroServicos.setPreferredSize(new java.awt.Dimension(100, 22));
+
+        jButtonCadastrarServicos.setBackground(new java.awt.Color(34, 51, 59));
+        jButtonCadastrarServicos.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCadastrarServicos.setText("Cadastrar");
+        jButtonCadastrarServicos.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButtonCadastrarServicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarServicosActionPerformed(evt);
+            }
+        });
+
+        jButtonExcluirServico.setBackground(new java.awt.Color(34, 51, 59));
+        jButtonExcluirServico.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonExcluirServico.setText("Excluir");
+        jButtonExcluirServico.setPreferredSize(new java.awt.Dimension(100, 30));
+
+        javax.swing.GroupLayout jPanelMeioCadastroServicosLayout = new javax.swing.GroupLayout(jPanelMeioCadastroServicos);
+        jPanelMeioCadastroServicos.setLayout(jPanelMeioCadastroServicosLayout);
+        jPanelMeioCadastroServicosLayout.setHorizontalGroup(
+            jPanelMeioCadastroServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMeioCadastroServicosLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jPanelMeioCadastroServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(jTextFieldNomeCadastroServicos, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(jFormattedTextFieldValorCadastroServicos, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelMeioCadastroServicosLayout.createSequentialGroup()
+                        .addComponent(jButtonCadastrarServicos, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonExcluirServico, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(60, 60, 60))
+        );
+        jPanelMeioCadastroServicosLayout.setVerticalGroup(
+            jPanelMeioCadastroServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMeioCadastroServicosLayout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldNomeCadastroServicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jFormattedTextFieldValorCadastroServicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(jPanelMeioCadastroServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCadastrarServicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonExcluirServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(272, 272, 272))
+        );
+
+        jPanelTopCadastroClientes1.setBackground(new java.awt.Color(34, 51, 59));
+        jPanelTopCadastroClientes1.setLayout(new java.awt.GridBagLayout());
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/Barbersched_Logo.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipady = -250;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(23, 6, 11, 809);
+        jPanelTopCadastroClientes1.add(jLabel14, gridBagConstraints);
+
+        javax.swing.GroupLayout jInternalFrameCadastrosServicosLayout = new javax.swing.GroupLayout(jInternalFrameCadastrosServicos.getContentPane());
+        jInternalFrameCadastrosServicos.getContentPane().setLayout(jInternalFrameCadastrosServicosLayout);
+        jInternalFrameCadastrosServicosLayout.setHorizontalGroup(
+            jInternalFrameCadastrosServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrameCadastrosServicosLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jInternalFrameCadastrosServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jInternalFrameCadastrosServicosLayout.createSequentialGroup()
+                        .addComponent(jPanelTopCadastroClientes1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, 0))
+                    .addGroup(jInternalFrameCadastrosServicosLayout.createSequentialGroup()
+                        .addComponent(jPanelMeioCadastroServicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jPanelCentralCadastroServicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        jInternalFrameCadastrosServicosLayout.setVerticalGroup(
+            jInternalFrameCadastrosServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrameCadastrosServicosLayout.createSequentialGroup()
+                .addComponent(jPanelTopCadastroClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(jInternalFrameCadastrosServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelCentralCadastroServicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelMeioCadastroServicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
         jInternalFrameCadastroClientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jInternalFrameCadastroClientes.setMaximizable(true);
         jInternalFrameCadastroClientes.setTitle("Cadastro de Clientes");
         jInternalFrameCadastroClientes.setVisible(true);
 
-        jPanelTop.setBackground(new java.awt.Color(34, 51, 59));
-        jPanelTop.setLayout(new java.awt.GridBagLayout());
+        jPanelTopCadastroClientes.setBackground(new java.awt.Color(34, 51, 59));
+        jPanelTopCadastroClientes.setLayout(new java.awt.GridBagLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/Barbersched_Logo.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -292,7 +453,7 @@ public class TelaInicial extends javax.swing.JFrame {
         gridBagConstraints.ipady = -250;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(23, 6, 11, 809);
-        jPanelTop.add(jLabel5, gridBagConstraints);
+        jPanelTopCadastroClientes.add(jLabel5, gridBagConstraints);
 
         jLabelNome.setText("Nome");
 
@@ -418,6 +579,11 @@ public class TelaInicial extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableClientes);
 
         javax.swing.GroupLayout jPanelTabelaCadastroClientesLayout = new javax.swing.GroupLayout(jPanelTabelaCadastroClientes);
@@ -452,17 +618,18 @@ public class TelaInicial extends javax.swing.JFrame {
         jInternalFrameCadastroClientes.getContentPane().setLayout(jInternalFrameCadastroClientesLayout);
         jInternalFrameCadastroClientesLayout.setHorizontalGroup(
             jInternalFrameCadastroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelTopCadastroClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanelCentralCadastroClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jInternalFrameCadastroClientesLayout.setVerticalGroup(
             jInternalFrameCadastroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrameCadastroClientesLayout.createSequentialGroup()
-                .addComponent(jPanelTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelTopCadastroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanelCentralCadastroClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jDesktopPaneCentro.setLayer(jInternalFrameCadastrosServicos, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPaneCentro.setLayer(jInternalFrameCadastroClientes, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPaneCentroLayout = new javax.swing.GroupLayout(jDesktopPaneCentro);
@@ -470,10 +637,14 @@ public class TelaInicial extends javax.swing.JFrame {
         jDesktopPaneCentroLayout.setHorizontalGroup(
             jDesktopPaneCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jInternalFrameCadastroClientes)
+            .addGroup(jDesktopPaneCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jInternalFrameCadastrosServicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPaneCentroLayout.setVerticalGroup(
             jDesktopPaneCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jInternalFrameCadastroClientes)
+            .addGroup(jDesktopPaneCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jInternalFrameCadastrosServicos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelCentroLayout = new javax.swing.GroupLayout(jPanelCentro);
@@ -566,15 +737,20 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Arquivo");
+        jMenuArquivo.setText("Arquivo");
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenu1.add(jMenuItem1);
+        jMenuItemSair.setText("Sair");
+        jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSairActionPerformed(evt);
+            }
+        });
+        jMenuArquivo.add(jMenuItemSair);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuArquivo);
 
-        jMenu2.setText("Editar");
-        jMenuBar1.add(jMenu2);
+        jMenuEditar.setText("Editar");
+        jMenuBar1.add(jMenuEditar);
 
         setJMenuBar(jMenuBar1);
 
@@ -637,6 +813,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jButtonFecharJanelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharJanelasActionPerformed
         jInternalFrameCadastroClientes.setVisible(false);
+        jInternalFrameCadastrosServicos.setVisible(false);
         jButtonFecharJanelas.setEnabled(false);
         removerHoverBotaoIcone(jButtonFecharJanelas);
     }//GEN-LAST:event_jButtonFecharJanelasActionPerformed
@@ -730,6 +907,38 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonExcluirClientesActionPerformed
+
+    private void jTableClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientesMouseClicked
+        if (evt.getClickCount() == 2){
+            // pegando o cliente selecionado na tabela
+            Cliente cliente = clienteModel.getCliente(jTableClientes.getSelectedRow());
+            // instanciando a tela de alterar o cliente
+            TelaAlterarCliente telaAlterarCliente = new TelaAlterarCliente();
+            // configurando para abrir a tela somente 1 unica vez
+            telaAlterarCliente.setModal(true);
+            // passando a marca para dentro da tela de cadastro
+            telaAlterarCliente.setCliente(cliente);
+            telaAlterarCliente.setVisible(true);
+            atualizaTabelaCadastroClientes();
+        }
+    }//GEN-LAST:event_jTableClientesMouseClicked
+
+    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItemSairActionPerformed
+
+    private void jButtonCadastrarServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarServicosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCadastrarServicosActionPerformed
+
+    private void jMenuItemCadastrarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarServicoActionPerformed
+        abrirJanelaInterna(jInternalFrameCadastrosServicos);
+        atualizaTabelaCadastroClientes();
+        if (jButtonFecharJanelas.isEnabled() == false) {
+            jButtonFecharJanelas.setEnabled(true);
+            adicionarHoverBotaoIcone(jButtonFecharJanelas);
+        }
+    }//GEN-LAST:event_jMenuItemCadastrarServicoActionPerformed
 
     //método que atualiza a Tabela de Clientes
     private void atualizaTabelaCadastroClientes() {
@@ -838,16 +1047,23 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAgendar;
     private javax.swing.JButton jButtonCadastrarCliente;
     private javax.swing.JButton jButtonCadastrarClientes;
+    private javax.swing.JButton jButtonCadastrarServicos;
     private javax.swing.JButton jButtonExcluirClientes;
+    private javax.swing.JButton jButtonExcluirServico;
     private javax.swing.JButton jButtonFecharJanelas;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JDesktopPane jDesktopPaneCentro;
     private javax.swing.JFormattedTextField jFormattedTextFieldCpfCadastroClientes;
     private javax.swing.JFormattedTextField jFormattedTextFieldDataNascimentoCadastroClientes;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelefoneCadastroClientes;
+    private javax.swing.JFormattedTextField jFormattedTextFieldValorCadastroServicos;
     private javax.swing.JInternalFrame jInternalFrameCadastroClientes;
+    private javax.swing.JInternalFrame jInternalFrameCadastrosServicos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -860,11 +1076,10 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelContagemCancelamentos;
     private javax.swing.JLabel jLabelContagemConcluidos;
     private javax.swing.JLabel jLabelNome;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenuArquivo;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCadastros;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu jMenuEditar;
     private javax.swing.JMenuItem jMenuItemAgendar;
     private javax.swing.JMenuItem jMenuItemCadastrarBarbeiro;
     private javax.swing.JMenuItem jMenuItemCadastrarCliente;
@@ -873,24 +1088,32 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemRelatorioServico;
     private javax.swing.JMenuItem jMenuItemRelatórioAgendamento;
     private javax.swing.JMenuItem jMenuItemRelatórioCliente;
+    private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenu jMenuRelatorios;
     private javax.swing.JMenu jMenuServicos;
     private javax.swing.JPanel jPanelBotoes;
     private javax.swing.JPanel jPanelCentralCadastroClientes;
+    private javax.swing.JPanel jPanelCentralCadastroServicos;
     private javax.swing.JPanel jPanelCentro;
     private javax.swing.JPanel jPanelDireito;
     private javax.swing.JPanel jPanelMeioCadastroClientes;
+    private javax.swing.JPanel jPanelMeioCadastroServicos;
     private javax.swing.JPanel jPanelTabelaCadastroClientes;
-    private javax.swing.JPanel jPanelTop;
+    private javax.swing.JPanel jPanelTabelaServicos;
+    private javax.swing.JPanel jPanelTopCadastroClientes;
+    private javax.swing.JPanel jPanelTopCadastroClientes1;
     private javax.swing.JPanel jPanelTopoMenu;
     private javax.swing.JPopupMenu jPopupMenu;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JTable jTableClientes;
+    private javax.swing.JTable jTableServicos;
     private javax.swing.JTextField jTextFieldLoginCadastroClientes;
     private javax.swing.JTextField jTextFieldNomeCadastroClientes;
+    private javax.swing.JTextField jTextFieldNomeCadastroServicos;
     private javax.swing.JTextField jTextFieldSenhaCadastroClientes;
     // End of variables declaration//GEN-END:variables
 }
