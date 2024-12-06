@@ -6,7 +6,10 @@ package controller;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import modelDominio.Agendamento;
 import modelDominio.Barbeiro;
 import modelDominio.Cliente;
@@ -162,7 +165,7 @@ public class ConexaoController {
             return false;
         }
     }
-    
+
     // O método retorna true se o Login existir no banco e false caso contrário.
     public boolean verificarLoginCadastradoCliente(String login) {
         try {
@@ -181,7 +184,7 @@ public class ConexaoController {
     public ArrayList<Servico> getServicoLista() {
         try {
             // enviar o comando "ServicoLista"
-            out.writeObject("ClienteLista");
+            out.writeObject("ServicoLista");
             // recebendo e retornando listagem de Serviços
             return (ArrayList<Servico>) in.readObject();
         } catch (Exception ex) {
@@ -297,6 +300,18 @@ public class ConexaoController {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public List<LocalTime> obterHorariosDisponiveis(Agendamento agendamento) {
+        try {
+            out.writeObject("ObterHorariosDisponiveis"); // enviando o comando
+            in.readObject(); // lendo "ok"
+            out.writeObject(agendamento); // enviando o agendamento
+            return (List<LocalTime>) in.readObject(); // lendo e devolvendo o resultado
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

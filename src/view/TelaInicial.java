@@ -19,13 +19,17 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicButtonUI;
 import modelDominio.Cliente;
+import modelDominio.Servico;
 import security.Criptografia;
 import view.tablemodel.ClienteTableModel;
+import view.tablemodel.ServicoTableModel;
 
 public class TelaInicial extends javax.swing.JFrame {
 
     // tableModel dos Clientes
     private ClienteTableModel clienteModel;
+    // tableModel dos Servicos
+    private ServicoTableModel servicoModel;
 
     public TelaInicial() {
         initComponents();
@@ -35,6 +39,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         // Desabilitando janelas internas
         jInternalFrameCadastroClientes.setVisible(false);
+        jInternalFrameCadastrosServicos.setVisible(false);
 
         // Desabilitando o botão Fechar janelas
         jButtonFecharJanelas.setEnabled(false);
@@ -312,7 +317,20 @@ public class TelaInicial extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableServicos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableServicosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableServicos);
 
         javax.swing.GroupLayout jPanelTabelaServicosLayout = new javax.swing.GroupLayout(jPanelTabelaServicos);
@@ -320,7 +338,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanelTabelaServicosLayout.setHorizontalGroup(
             jPanelTabelaServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTabelaServicosLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         jPanelTabelaServicosLayout.setVerticalGroup(
@@ -332,8 +350,8 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanelCentralCadastroServicos.setLayout(jPanelCentralCadastroServicosLayout);
         jPanelCentralCadastroServicosLayout.setHorizontalGroup(
             jPanelCentralCadastroServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCentralCadastroServicosLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
+            .addGroup(jPanelCentralCadastroServicosLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanelTabelaServicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
@@ -365,6 +383,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jButtonExcluirServico.setForeground(new java.awt.Color(255, 255, 255));
         jButtonExcluirServico.setText("Excluir");
         jButtonExcluirServico.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButtonExcluirServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirServicoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelMeioCadastroServicosLayout = new javax.swing.GroupLayout(jPanelMeioCadastroServicos);
         jPanelMeioCadastroServicos.setLayout(jPanelMeioCadastroServicosLayout);
@@ -402,16 +425,25 @@ public class TelaInicial extends javax.swing.JFrame {
         );
 
         jPanelTopCadastroClientes1.setBackground(new java.awt.Color(34, 51, 59));
-        jPanelTopCadastroClientes1.setLayout(new java.awt.GridBagLayout());
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/Barbersched_Logo.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipady = -250;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 6, 11, 809);
-        jPanelTopCadastroClientes1.add(jLabel14, gridBagConstraints);
+
+        javax.swing.GroupLayout jPanelTopCadastroClientes1Layout = new javax.swing.GroupLayout(jPanelTopCadastroClientes1);
+        jPanelTopCadastroClientes1.setLayout(jPanelTopCadastroClientes1Layout);
+        jPanelTopCadastroClientes1Layout.setHorizontalGroup(
+            jPanelTopCadastroClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTopCadastroClientes1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel14)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelTopCadastroClientes1Layout.setVerticalGroup(
+            jPanelTopCadastroClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTopCadastroClientes1Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11))
+        );
 
         javax.swing.GroupLayout jInternalFrameCadastrosServicosLayout = new javax.swing.GroupLayout(jInternalFrameCadastrosServicos.getContentPane());
         jInternalFrameCadastrosServicos.getContentPane().setLayout(jInternalFrameCadastrosServicosLayout);
@@ -419,10 +451,8 @@ public class TelaInicial extends javax.swing.JFrame {
             jInternalFrameCadastrosServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrameCadastrosServicosLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(jInternalFrameCadastrosServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jInternalFrameCadastrosServicosLayout.createSequentialGroup()
-                        .addComponent(jPanelTopCadastroClientes1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(0, 0, 0))
+                .addGroup(jInternalFrameCadastrosServicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelTopCadastroClientes1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jInternalFrameCadastrosServicosLayout.createSequentialGroup()
                         .addComponent(jPanelMeioCadastroServicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -909,14 +939,14 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonExcluirClientesActionPerformed
 
     private void jTableClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientesMouseClicked
-        if (evt.getClickCount() == 2){
+        if (evt.getClickCount() == 2) {
             // pegando o cliente selecionado na tabela
             Cliente cliente = clienteModel.getCliente(jTableClientes.getSelectedRow());
             // instanciando a tela de alterar o cliente
             TelaAlterarCliente telaAlterarCliente = new TelaAlterarCliente();
             // configurando para abrir a tela somente 1 unica vez
             telaAlterarCliente.setModal(true);
-            // passando a marca para dentro da tela de cadastro
+            // passando o cliente para dentro da tela
             telaAlterarCliente.setCliente(cliente);
             telaAlterarCliente.setVisible(true);
             atualizaTabelaCadastroClientes();
@@ -928,17 +958,79 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSairActionPerformed
 
     private void jButtonCadastrarServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarServicosActionPerformed
-        // TODO add your handling code here:
+        if (!jTextFieldNomeCadastroServicos.getText().equals("")) {
+            if (!jFormattedTextFieldValorCadastroServicos.getText().equals("")) {
+                // obtendo os dados dos campos informados
+                String nome = jTextFieldNomeCadastroServicos.getText();
+                int valor = Integer.parseInt(jFormattedTextFieldValorCadastroServicos.getText());
+
+                // criando o servico com os dados informados
+                Servico servico = new Servico(nome, valor);
+                boolean resultado = false;
+
+                // inserindo o servico e pegando o resultado
+                resultado = Principal.ccont.servicoInserir(servico);
+
+                // testando o resultado
+                if (resultado) {
+                    JOptionPane.showMessageDialog(this, "Serviço inserido com sucesso!", "Banco", 1);
+                    atualizaTabelaCadastroServicos();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ocorreu um erro ao inserir.", "Banco", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Preencha o campo valor.");
+                jFormattedTextFieldValorCadastroServicos.requestFocus();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Preencha o campo nome.");
+            jTextFieldNomeCadastroServicos.requestFocus();
+        }
     }//GEN-LAST:event_jButtonCadastrarServicosActionPerformed
 
     private void jMenuItemCadastrarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarServicoActionPerformed
         abrirJanelaInterna(jInternalFrameCadastrosServicos);
-        atualizaTabelaCadastroClientes();
+        atualizaTabelaCadastroServicos();
         if (jButtonFecharJanelas.isEnabled() == false) {
             jButtonFecharJanelas.setEnabled(true);
             adicionarHoverBotaoIcone(jButtonFecharJanelas);
         }
     }//GEN-LAST:event_jMenuItemCadastrarServicoActionPerformed
+
+    private void jButtonExcluirServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirServicoActionPerformed
+        // verificando se o usuário selecionou um serviço
+        if (jTableServicos.getSelectedRow() != -1) {
+            int resultado = JOptionPane.showConfirmDialog(this,
+                    "Tem certeza que deseja excluir?",
+                    "",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if (resultado == JOptionPane.YES_OPTION) {
+                Servico servico = servicoModel.getServico(jTableServicos.getSelectedRow());
+                if (Principal.ccont.servicoExcluir(servico)) {
+                    JOptionPane.showMessageDialog(this, "Registro excluído com sucesso!", "Banco", 1);
+                    atualizaTabelaCadastroServicos();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Não foi possível excluir!", "Banco", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButtonExcluirServicoActionPerformed
+
+    private void jTableServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableServicosMouseClicked
+        if (evt.getClickCount() == 2) {
+            // pegando o serviço selecionado na tabela
+            Servico servico = servicoModel.getServico(jTableServicos.getSelectedRow());
+            // instanciando a tela de alterar o serviço
+            TelaAlterarServico telaAlterarServico = new TelaAlterarServico();
+            // configurando para abrir a tela somente 1 unica vez
+            telaAlterarServico.setModal(true);
+            // passando o serviço para dentro da tela
+            telaAlterarServico.setServico(servico);
+            telaAlterarServico.setVisible(true);
+            atualizaTabelaCadastroClientes();
+        }
+    }//GEN-LAST:event_jTableServicosMouseClicked
 
     //método que atualiza a Tabela de Clientes
     private void atualizaTabelaCadastroClientes() {
@@ -948,6 +1040,16 @@ public class TelaInicial extends javax.swing.JFrame {
         clienteModel = new ClienteTableModel(listaClientes);
         //setar o table model na Jtable
         jTableClientes.setModel(clienteModel);
+    }
+
+    //método que atualiza a Tabela de Servicos
+    private void atualizaTabelaCadastroServicos() {
+        //buscar a listagem de Servicos 
+        ArrayList<Servico> listaServicos = Principal.ccont.getServicoLista();
+        // Criar o tablemodel
+        servicoModel = new ServicoTableModel(listaServicos);
+        //setar o table model na Jtable
+        jTableServicos.setModel(servicoModel);
     }
 
     // Método para remover as bordas de todos os botões em um Container
